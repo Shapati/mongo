@@ -10,7 +10,13 @@ const postData =asycnHandler(async (req,res)=>{
     res.status(400)
     throw new Error('please add a text field')
   }
-  const user = await User.create({text:req.body.text})
+ 
+  const user = await User.create([{
+    
+    text:req.body.text,
+    jobs: req.body.jobs
+  }])
+
   res.status(200).json(user)
 })
 const updateData =asycnHandler(async (req,res)=>{
